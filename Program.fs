@@ -180,7 +180,7 @@ open System.IO
 
 [<EntryPoint>]
 let main argv =
-    let img = Image.Load<Rgba32>("pills.png")
+    let img = Image.Load<Rgba32>("fish.png")
 
     //printfn $"Frames: {img.Frames.Count}"
 
@@ -195,15 +195,18 @@ let main argv =
     //     } |> Async.RunSynchronously
     
     
-    // let img = img.CloneAs<Rgba32>()
+    let img = img.CloneAs<Rgba32>()
 
     let p = PointF(100f,100f)
     let s = Star  (p, 5, 60f, 130f)
     img.Mutate(fun (ctx:IImageProcessingContext) -> ctx.Invert() |> ignore; ctx.Fill(Color.BlueViolet,s) |> ignore)
     
-    img.Save("pills_inv.png")
+    img.Save("fish_inv.png")
 
-    //makeImage rule30 (nameof rule30)
+    makeImage rule90 (nameof rule90)
+
+    // make a bunch of circles
+    
     for i in 0..100 do
         makeCircles "circle" i
         printfn "%A" i
